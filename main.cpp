@@ -89,6 +89,7 @@ int main(){
     fullboard* newboard2 = new fullboard(word, userguess, holding);
     Man* newman = new Man();
     
+    int count = 0; // to count wrong guesses	
     //checks if guess is correct; adds if yes draws if no
     Guess* newguess = new Guess(word, userguess);
     if(newguess->guess_correct() == true){
@@ -97,6 +98,7 @@ int main(){
     else{
         newman->draw();
      	newboard2->draw_board();
+	count++;
     }
     
     holding = newboard2->returnvec(); 
@@ -117,10 +119,11 @@ int main(){
         
             newman->draw();
             newboard3->draw_board();
+	    count++;
         }
         holding = newboard3->returnvec();
         
-        if(newman->check_complete() == true) {
+        if(count == 6) {
             std::cout << endl;
             std::cout << "The word was " << word << endl;
             std::cout << "You lost :( Play Again Later!" << endl;

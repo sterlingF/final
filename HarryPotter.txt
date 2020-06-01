@@ -30,15 +30,3 @@ FredWeasley
 Hedwig
 MollyWeasley
 MinervaMcGonagall
-TheSorcerer'sStone
-TheChamberofSecrets
-ThePrisonerofAzkaban
-TheGobletofFire
-TheOrderofthePhoenix
-TheHalf-BloodPrince
-TheDeathlyHallows
-Muggle
-Wizard
-Witch
-Half-Blood
-Squib
