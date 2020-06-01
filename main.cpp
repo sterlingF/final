@@ -8,6 +8,7 @@
 #include "emptyboard.hpp"
 #include "man.hpp"
 #include "fullboard.hpp"
+#include <algorithm>
 
 using namespace std;
 
