@@ -74,7 +74,7 @@ int main(){
     emptyboard* newboard = new emptyboard(word);
     newboard->draw_board();
     
-    int count = 0;
+   // int count = 0;
     std::string userguess;
     std::cout << "Guess: " <<std::endl;
     std::cin >> userguess;
@@ -91,7 +91,7 @@ int main(){
     }
     else{
         newman->draw();
-        count++;
+     //   count++;
     }
     
     holding = newboard2->returnvec(); //what is the point of this?
@@ -109,13 +109,13 @@ int main(){
             newboard3->draw_board();
         }
         else{
-            count++;
+        //    count++;
             newman->draw();
             newboard3->draw_board();
         }
         holding = newboard3->returnvec();
         
-        if(count == 6) {
+        if(newman->check_complete() == true) {
             std::cout << endl;
             std::cout << "The word was " << word << endl;
             std::cout << "You lost :( Play Again Later!" << endl;

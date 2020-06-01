@@ -6,22 +6,22 @@ using namespace std;
 
 class Man{
 private:
-    bool complete;
+    bool complete = false;
     string last = " ";
 public:
-    Man(): complete(false){};
+    Man(){};
     //            bool check_complete();
     //            void draw();
     
     bool check_complete(){
         //false when NOT COMPLETE
         if(last != " o"){
-            return false;
+            complete = false;;
         }
         else if(last == " o"){
-            return true;
+            complete =  true;
         }
-        return false;
+        return complete;
     }
     
     
@@ -55,5 +55,12 @@ public:
          last = 'o';
          }*/
     }
+
+
+    //for testing purposes
+    string pic() {
+	return last;	
+    }   
+	
 };
 #endif // __MAN_HPP__

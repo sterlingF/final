@@ -155,9 +155,114 @@ TEST(Guess, doublewithin){
         EXPECT_EQ(newguess->guess_correct(), true);
 }
 
+TEST(Man, onewrong) {
+	std::string word = "cat";
+	std::string userguess = "p";
+	Man* newman = new  Man();
+	newman->draw();
+	EXPECT_EQ(newman->pic(), " o");
+} 
 
+TEST(Man, threewrong) {
+	std::string word = "wrong";
+	std::string userguess = "p";
+	Guess* newguess = new Guess(word, userguess);
+	Man* newman = new  Man();
+	if(newguess->guess_correct() == false) {
+		newman->draw();	
+	}
+	userguess = "r";
+	newguess = new Guess(word, userguess);
+	if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+	userguess = "f";
+	newguess = new Guess(word, userguess);
+	if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+	userguess = "b";
+        newguess = new Guess(word, userguess);
+        if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+        EXPECT_EQ(newman->pic(), "-");
+}
 
+TEST(Man, notcomplete) {
+	Man* man = new Man();
+	man->draw();
+	man->draw();
+	man->draw();
+	EXPECT_EQ(man->check_complete(), false);
+}
 
+TEST(Man, complete) {
+	Man* man = new Man();
+        for(int i = 0; i < 6; i++) {
+		man->draw();
+	}
+        EXPECT_EQ(man->check_complete(), true);
+}
+
+TEST(main, program) {
+	
+	std::string test = "";
+	std::string word = "cat";
+	emptyboard* newboard = new emptyboard(word);
+        newboard->draw_board();
+
+        std::vector<std::string> holding = newboard->returnvec();
+        std::string guess = "h";
+	
+	fullboard* newboard2 = new fullboard(word, guess, holding);
+        Guess* newguess = new Guess(word, guess);	
+	Man* newman = new  Man();
+        if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+	else {
+		newboard2->draw_board();
+		test = test + guess;	
+	}	
+
+	holding = newboard2->returnvec();
+	guess = "c";
+	newboard2 = new fullboard(word, guess, holding);
+        newguess = new Guess(word, guess); 
+        if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+        else {
+                newboard2->draw_board();
+		test = test + guess;
+        }
+	
+        guess = "a";
+        newboard2 = new fullboard(word, guess, holding);
+        newguess = new Guess(word, guess);
+        if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+        else {
+                newboard2->draw_board();
+		test = test + guess;
+        }
+
+	guess = "t";
+        newboard2 = new fullboard(word, guess, holding);
+        newguess = new Guess(word, guess);
+        if(newguess->guess_correct() == false) {
+                newman->draw();
+        }
+        else {
+		newboard2->draw_board();
+		test = test + guess;
+        }
+            	                                                                                 	
+	
+	EXPECT_EQ(test, word);  
+}
 
 
 int main(int argc, char **argv) {
