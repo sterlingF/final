@@ -14,25 +14,30 @@ using namespace std;
 
 string chooseword() {
     std::string choice;
-    std::cout << "Please choose a Category: Harry | CS" << std::endl;
+    std::cout << "Please choose a Category: Harry | CS | Fruit" << std::endl;
     std::cin >> choice;
-    while (choice != "Harry" && choice != "CS") {
+    transform(choice.begin(), choice.end(), choice.begin(), ::tolower);
+    while (choice != "harry" && choice != "cs" && choice != "fruit") {
         std::cout << "Please choose a Category: Harry Potter | CS" << std::endl;
         std::cin>>choice;
     }
     
     //opening correct file for category
     std::ifstream myfile;
-    if(choice == "Harry") {
+    if(choice == "harry") {
         myfile.open("HarryPotter.txt");
     }
-    else if (choice == "CS") {
+    else if (choice == "cs") {
         myfile.open("CS.txt");
+    }
+    else if (choice == "fruit") {
+        myfile.open("food.txt");
     }
     if(!myfile.is_open()) {
         std::cout << "Unable to open file" << std::endl;
         std::exit(1);
-    }
+    }  
+   
     
     //generating rand number to choose word
     int number = 0;
@@ -91,10 +96,10 @@ int main(){
     }
     else{
         newman->draw();
-     //   count++;
+     	newboard2->draw_board();
     }
     
-    holding = newboard2->returnvec(); //what is the point of this?
+    holding = newboard2->returnvec(); 
     bool done = false;
     
     while(done == false){
@@ -109,7 +114,7 @@ int main(){
             newboard3->draw_board();
         }
         else{
-        //    count++;
+        
             newman->draw();
             newboard3->draw_board();
         }
