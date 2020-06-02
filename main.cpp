@@ -92,6 +92,11 @@ int main(){
     int count = 0; // to count wrong guesses	
     //checks if guess is correct; adds if yes draws if no
     Guess* newguess = new Guess(word, userguess);
+	std::vector<Guess*>holdingguess; 
+    newguess->add(holdingguess); 
+    std::cout << std::endl << "Guesses: ";
+	 newguess->printguess(); 
+	std::cout << std::endl; 
     if(newguess->guess_correct() == true){
         newboard2->draw_board();
     }
@@ -100,7 +105,7 @@ int main(){
      	newboard2->draw_board();
 	count++;
     }
-    
+    holdingguess = newguess->returnvec();
     holding = newboard2->returnvec(); 
     bool done = false;
     
@@ -110,7 +115,12 @@ int main(){
         transform(userguess.begin(), userguess.end(), userguess.begin(), ::tolower);
         
         
-        Guess* newguess2 = new Guess(word, userguess);
+         Guess* newguess2 = new Guess(word, userguess);
+	 newguess2->add(holdingguess);
+	 std::cout << std::endl << "Guesses: "; 
+	 newguess2->printguess();
+		std::cout << std::endl; 
+
         fullboard* newboard3 = new fullboard(word, userguess, holding);
         if(newguess2->guess_correct() == true){
             newboard3->draw_board();
@@ -122,7 +132,7 @@ int main(){
 	    count++;
         }
         holding = newboard3->returnvec();
-        
+        holdingguess = newguess2->returnvec(); 
         if(count == 6) {
             std::cout << endl;
             std::cout << "The word was " << word << endl;
